@@ -1,118 +1,49 @@
-function add() {
-  //get the numbers
-  let numberOne = document.getElementById("firstNumber").value;
-  let numberTwo = document.getElementById("secondNumber").value;
+function getValues() {
+  let fizzValue = document.getElementById("fizzValue").value;
+  let buzzValue = document.getElementById("buzzValue").value;
 
-  //turn them into integers
-  numberOne = parseFloat(numberOne);
-  numberTwo = parseFloat(numberTwo);
+  let fizzNum = parseInt(fizzValue);
+  let buzzNum = parseInt(buzzValue);
 
-  //add the first and second numbers
-  let sum = numberOne + numberTwo;
-
-  //display the result
-  let resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = sum;
-}
-
-function subtract() {
-  let numberOne = document.getElementById("firstNumber").value;
-  let numberTwo = document.getElementById("secondNumber").value;
-
-  numberOne = parseFloat(numberOne);
-  numberTwo = parseFloat(numberTwo);
-
-  let difference = numberOne - numberTwo;
-
-  let resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = difference;
-}
-
-function multiply() {
-  let numberOne = document.getElementById("firstNumber").value;
-  let numberTwo = document.getElementById("secondNumber").value;
-
-  numberOne = parseFloat(numberOne);
-  numberTwo = parseFloat(numberTwo);
-
-  let product = numberOne * numberTwo;
-
-  let resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = product;
-}
-
-function divide() {
-  let numberOne = document.getElementById("firstNumber").value;
-  let numberTwo = document.getElementById("secondNumber").value;
-
-  numberOne = parseFloat(numberOne);
-  numberTwo = parseFloat(numberTwo);
-
-  let quotient = numberOne / numberTwo;
-
-    if (numberTwo == 0) {
-        quotient = "Cannot divide by zero!";
-    }
-
-  let resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = quotient;
-}
-
-function sumAll() {
-    let numberString = document.getElementById('numberSeries').value;
-    //numberString = '12345'
-
-    let numberArray = numberString.split('')
-    //numberArray = ['1', '2', '3', '3', '4', '5']
-    
-    let sum = 0; //running total
-
-    for (let i = 0; i < numberArray.length; i++) {
-        
-        let currentNumber = numberArray[i];
-        //currentNumber = '1'
-        
-        currentNumber = parseInt(currentNumber);
-        //currentNumber = 1
-
-        sum = sum + currentNumber;
-    }
-
-    let resultsDiv = document.getElementById('results');
-    resultsDiv.innerText = sum;
-}
-
-function multiplyAll() {
-  let numberString = document.getElementById('numberSeries').value;
-  //numberString = '12345'
-
-  let numberArray = numberString.split('');
-  //numberArray = ['1', '2', '3', '3', '4', '5']
-
-  let sum = 1; //running total
-
-  for (let i = 0; i < numberArray.length; i++) {
-    let currentNumber = numberArray[i];
-    //currentNumber = '1'
-
-    currentNumber = parseInt(currentNumber);
-    //currentNumber = 1
-
-    sum = sum * currentNumber;
+  if (Number.isInteger(fizzNum) && Number.isInteger(buzzNum)) {
+    let numberArray = generateFizzBuzz(fizzNum, buzzNum);
+    displayFizzBuzz(numberArray);
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: "Please enter valid numbers for the fizz, buzz, and stop values",
+    });
   }
-
-  let resultsDiv = document.getElementById('results');
-  resultsDiv.innerText = sum;
 }
 
-function minimum() {
+function generateFizzBuzz(start, end) {
+  let basketOfNumbers = [];
 
+  for (let number = start; number <= end; number++) {
+    basketOfNumbers.push(number);
+  }
+  return basketOfNumbers;
 }
 
-function maximum() {
+function displayFizzBuzz(numbers) {
+  let results = "";
 
-}
+  for (let i = 0; i < numbers.length; i++) {
+      let num = numbers[i]
 
-function average() {
+      if (num % 3 === 0 && num % 5 === 0) {
+        results = results + `<tr><td>${'FizzBuzz'}</td></tr>`;
+      } else if (num % 3 === 0) {
+        results = results + `<tr><td>${'Fizz'}</td></tr>`;
+      }
+        else if (num % 5 === 0) {
+        results = results + `<tr><td>${'Buzz'}</td></tr>`;
+      } else {
+        results = results + `<tr><td>${num}</td></tr>`;
+      }
+    }
 
+  let tableBody = document.getElementById("results");
+  tableBody.innerHTML = results;
 }
