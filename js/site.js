@@ -1,11 +1,13 @@
 function getValues() {
   let fizzValue = document.getElementById("fizzValue").value;
   let buzzValue = document.getElementById("buzzValue").value;
+  let stopValue = document.getElementById('stopValue').value;
 
   let fizzNum = parseInt(fizzValue);
   let buzzNum = parseInt(buzzValue);
+  let stopNum = parseInt(stopValue);
 
-  if (Number.isInteger(fizzNum) && Number.isInteger(buzzNum)) {
+  if (Number.isInteger(fizzNum) && Number.isInteger(buzzNum) && Number.isInteger(stopNum)) {
     let numberArray = generateFizzBuzz(fizzNum, buzzNum);
     displayFizzBuzz(numberArray);
   } else {
