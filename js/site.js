@@ -1,50 +1,64 @@
 function getValues() {
-  let fizzValue = document.getElementById("fizzValue").value;
-  let buzzValue = document.getElementById("buzzValue").value;
-  let stopValue = document.getElementById('stopValue').value;
+  let pitchValue = document.getElementById("pitchValue").value;
+  let puttValue = document.getElementById("puttValue").value;
+  let stopValue = document.getElementById("stopValue").value;
 
-  let fizzNum = parseInt(fizzValue);
-  let buzzNum = parseInt(buzzValue);
+  let pitchNum = parseInt(pitchValue);
+  let puttNum = parseInt(puttValue);
   let stopNum = parseInt(stopValue);
 
-  if (Number.isInteger(fizzNum) && Number.isInteger(buzzNum) && Number.isInteger(stopNum)) {
-    let numberArray = generateFizzBuzz(fizzNum, buzzNum);
-    displayFizzBuzz(numberArray);
+  if (
+    Number.isInteger(pitchNum) &&
+    Number.isInteger(puttNum) &&
+    Number.isInteger(stopNum) &&
+    stopNum > 0
+  ) {
+    let numberArray = generatePitchPutt(pitchNum, puttNum, stopNum);
+    displayPitchPutt(numberArray);
   } else {
     Swal.fire({
       icon: "error",
       title: "Oops!",
-      text: "Please enter valid numbers for the fizz, buzz, and stop values",
+      text: "Please enter positive integers for the pitch, putt, and stop values",
+      backdrop: false,
     });
   }
 }
 
-function generateFizzBuzz(start, end) {
-  let basketOfNumbers = [];
+function generatePitchPutt(pitch, putt, stop) {
+  let resultArr = [];
 
-  for (let number = start; number <= end; number++) {
-    basketOfNumbers.push(number);
+  for (let number = 1; number <= stop; number++) {
+    if (number % pitch == 0 && number % putt == 0) {
+      resultArr.push("Pitch&Putt");
+    } else if (number % putt == 0) {
+      resultArr.push("Putt");
+    } else if (number % pitch == 0) {
+      resultArr.push("Pitch");
+    } else {
+      resultArr.push(number);
+    }
   }
-  return basketOfNumbers;
+
+  return resultArr;
 }
 
-function displayFizzBuzz(numbers) {
+function displayPitchPutt(numbers, pitch, putt) {
   let results = "";
 
   for (let i = 0; i < numbers.length; i++) {
-      let num = numbers[i]
+    let num = numbers[i];
 
-      if (num % 3 === 0 && num % 5 === 0) {
-        results = results + `<tr><td>${'FizzBuzz'}</td></tr>`;
-      } else if (num % 3 === 0) {
-        results = results + `<tr><td>${'Fizz'}</td></tr>`;
-      }
-        else if (num % 5 === 0) {
-        results = results + `<tr><td>${'Buzz'}</td></tr>`;
-      } else {
-        results = results + `<tr><td>${num}</td></tr>`;
-      }
+    if (num % pitch === 0 && num % putt === 0) {
+      results = results + `<tr><td>${"Pitch&Putt"}</td></tr>`;
+    } else if (num % pitch === 0) {
+      results = results + `<tr><td>${"Pitch"}</td></tr>`;
+    } else if (num % putt === 0) {
+      results = results + `<tr><td>${"Putt"}</td></tr>`; //&lt;
+    } else {
+      results = results + `<tr><td>${num}</td></tr>`;
     }
+  }
 
   let tableBody = document.getElementById("results");
   tableBody.innerHTML = results;
