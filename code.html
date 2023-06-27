@@ -176,7 +176,38 @@ function displayPitchPutt(numbers, pitch, putt) {
                 </pre>
         </div>
         <div class="col-12 col-lg-4">
-          <p>The code is structured into three separate functions.</p>
+          <p>
+            The code is structured into three separate functions.
+            Below you can get a better understanding of how this code works. 
+          </p>
+          <hr>
+          <h5>getValues( )</h5>
+          <p>
+            This function retrieves the values of the pitchValue, puttValue, and stopValue elements from the HTML document. 
+            It then parses these values into integers using parseInt( ) and stores them in the variables pitchNum, puttNum, and stopNum. 
+            It performs some input validation checks using Number.isInteger( ) and ensures that all three values are positive integers. 
+            If the conditions are met, it calls the generatePitchPutt(pitchNum, puttNum, stopNum) function and passes the values as arguments. 
+            If the conditions are not met, it displays an error message using the Swal library.
+          </p>
+          <hr>
+          <h5>generatePitchPutt(pitch, putt, stop)</h5>
+          <p>
+            This function takes three parameters: pitch, putt, and stop, which represent the input values for the pitch, putt, and stop. 
+            It initializes an empty array called resultArr to store the generated results. 
+            It then uses a for loop to iterate from 1 to stop, inclusive. 
+            For each number, it checks the conditions using modulo operations (%) to determine if the number is divisible by pitch, putt, or both. 
+            Depending on the conditions, it adds either "Pitch&Putt", "Putt", "Pitch", or the number itself to the resultArr. 
+            After the loop, it returns the resultArr with the generated results.
+          </p>
+          <hr>
+          <h5>displayPitchPutt(numbers, pitch, putt)</h5>
+          <p>
+            This function takes three parameters: numbers, pitch, and putt. The numbers parameter is an array containing the generated results from the previous function. 
+            It initializes an empty string called results to store the HTML content. It then uses a for loop to iterate through each number in the numbers array. 
+            Inside the loop, it checks the conditions using modulo operations (%) to determine if the number should be classified as "Pitch&Putt", "Putt", "Pitch", or remain unchanged. 
+            It appends the appropriate HTML content to the results string based on the conditions. 
+            Finally, it retrieves the results element from the HTML document and sets its innerHTML to the results string, which displays the generated results in an HTML table format.
+          </p>
         </div>
       </div>
     </main>

@@ -103,7 +103,16 @@
     </header>
 
     <main class="container mt-3">
-      <div class="row row-cols-md-4">
+      <div>
+        <h2>Instructions</h2>
+        <p>
+          Enter new values for Pitch and Putt if you'd like them to be divisible by a different number. 
+          Change the stop value to increase or descrease the amount of numbers in the array. 
+          Click "Go" when you're ready to the display the table.
+        </p>
+        <hr>
+      </div>
+      <div class="row g-3 row-cols-1 row-cols-md-4">
         <div class="col">
           <form action="#">
             <label for="pitchValue" class="form-label"> Pitch Value </label>
@@ -135,7 +144,7 @@
         <div class="col">
           <form action="#">
             <label for="stopValue" class="form-label">
-              Stop Value (max: 5,000)
+              Stop Value
             </label>
             <input
               class="form-control"
